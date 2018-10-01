@@ -7,6 +7,9 @@ def fix_path(file_name):
 def get_dir_name(file_name):
     return os.path.normpath(os.path.dirname(fix_path(file_name)))
 
+def file_exists_and_readable(file_name):
+    return os.access(file_name, os.R_OK) and os.path.isfile(file_name)
+
 logger = logging.getLogger(__name__)
 py_src_dir = get_dir_name(__file__)
 sys.path.insert(0, py_src_dir)
@@ -31,6 +34,11 @@ def main():
     (args, dirs) = parser.parse_args()
     try:
         logfile_name = os.path.abspath(fix_path(args.logfile_name))
+        if file_exists_and_readable(logfile_name):
+            try:
+                os.remove(logfile_name)
+            except:
+                raise RuntimeError("Log file {0} exists, but have no permission to change".format(logfile_name))
         log_file = logging.FileHandler(logfile_name)
         log_file.setFormatter(logging.Formatter('%(levelname)-7s [%(asctime)s.%(msecs)03d]: %(name)s - %(message)s', datefmt='%H:%M:%S'))
         logging.getLogger().addHandler(log_file)
