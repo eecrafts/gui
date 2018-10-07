@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/fpga'))
 sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/i2c'))
 
 # files_to_load = ['COController.py', 'FpgaController.py']
-files_to_load = ['GuiControl.py']
+files_to_load = ['GuiControl.py', 'COController.py', 'FpgaController.py']
 for ff in files_to_load:
     filename = py_src_dir + '/' + ff
     if not os.path.exists(filename):

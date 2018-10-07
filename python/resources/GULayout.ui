@@ -200,6 +200,15 @@
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="maximum">
+                  <number>511</number>
+                 </property>
+                 <property name="singleStep">
+                  <number>1</number>
+                 </property>
+                 <property name="value">
+                  <number>256</number>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -258,6 +267,7 @@
      <string>&amp;Project</string>
     </property>
     <addaction name="actionOpen_Project"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menu_FIle"/>
   </widget>
@@ -272,6 +282,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="separator"/>
   </widget>
   <action name="actionOpen_Project">
    <property name="text">
