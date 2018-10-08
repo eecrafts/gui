@@ -4,7 +4,7 @@ import SLABHIDtoSMBUS as i2c
 
 log = logging.getLogger(__name__)
 
-class Controller(object):
+class I2CController(object):
     fcvo_min_ = 10800000000.0
     hsdiv_upper_limit_ = 2046
     hsdiv_lower_limit_odd_ = 5

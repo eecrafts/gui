@@ -1,7 +1,7 @@
 
 import USB910H as spi
 
-class FpgaController(object):
+class SpiController(object):
     def __init__(self):
         spi.initialSPI()
 

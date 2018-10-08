@@ -17,13 +17,18 @@ sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/spi'))
 sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/fpga'))
 sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/i2c'))
 
-# files_to_load = ['COController.py', 'FpgaController.py']
-files_to_load = ['GuiControl.py', 'COController.py', 'FpgaController.py']
+files_to_load = ['GuiControl.py', 'I2CController.py', 'SpiController.py']
 for ff in files_to_load:
     filename = py_src_dir + '/' + ff
     if not os.path.exists(filename):
         raise ValueError("File: " + filename + " does not exist. Check file existance and permission")
     execfile(filename, globals(), locals())
+
+class Scheduler(object):
+    def __init__(self):
+        self.spi_controller_ = FpgaController()
+        self.i2c_controller_ = I2CController()
+
 
 def main():
     usage = "AD converter demo"
@@ -46,7 +51,7 @@ def main():
     except:
         raise RuntimeError("Failed to open log file: {0}".format(args.logfile_name))
 
-    logger.debug("I am writting to a file")
+
 
     if args.enable_gui:
         launch_gui()
