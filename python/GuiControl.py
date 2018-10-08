@@ -60,9 +60,9 @@ class GUWaveformPlotter(QtGui.QWidget):
 
 
 class GUMainWindow(QtGui.QMainWindow):
-    def __init__(self, main_control=None, parent=None):
+    def __init__(self, executor=None, parent=None):
         super(GUMainWindow, self).__init__(parent)
-        self.main_ctrl_ = main_control
+        self.executor_ = executor
         self.resource_dir_ = os.path.abspath(os.path.normpath(os.path.dirname(os.path.expanduser(__file__))))
         self.resource_dir_ = os.path.join(self.resource_dir_, 'resources')
         self.icon_path_ = os.path.join(self.resource_dir_, 'icons')

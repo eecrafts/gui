@@ -17,17 +17,21 @@ sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/spi'))
 sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/fpga'))
 sys.path.insert(0, os.path.normpath(py_src_dir+'/../modules/i2c'))
 
-files_to_load = ['GuiControl.py', 'I2CController.py', 'SpiController.py']
+files_to_load = ['GuiControl.py', 'I2CController.py', 'SpiController.py', 'DataProcess.py']
 for ff in files_to_load:
     filename = py_src_dir + '/' + ff
     if not os.path.exists(filename):
         raise ValueError("File: " + filename + " does not exist. Check file existance and permission")
     execfile(filename, globals(), locals())
 
-class Scheduler(object):
+class Executor(object):
     def __init__(self):
-        self.spi_controller_ = FpgaController()
+        self.spi_controller_ = SpiController()
         self.i2c_controller_ = I2CController()
+
+    def open_project(sef, prj_json):
+        logger.debug("open project for processing")
+        pass
 
 
 def main():
@@ -51,10 +55,9 @@ def main():
     except:
         raise RuntimeError("Failed to open log file: {0}".format(args.logfile_name))
 
-
-
+    executor = Executor()
     if args.enable_gui:
-        launch_gui()
+        launch_gui(executor)
 
 if __name__ == '__main__':
     main()
